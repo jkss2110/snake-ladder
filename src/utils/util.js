@@ -1,16 +1,16 @@
 export function getSnakes() {
   const snakes = [
     {
-      head: 16,
-      tail: 3,
+      head: 42,
+      tail: 18,
     },
     {
-      head: 25,
-      tail: 15,
+      head: 77,
+      tail: 57,
     },
     {
       head: 50,
-      tail: 35,
+      tail: 33,
     },
   ];
   return snakes;
@@ -18,12 +18,12 @@ export function getSnakes() {
 export function getLadder() {
   const ladders = [
     {
-      from: 2,
-      to: 25,
+      from: 6,
+      to: 34,
     },
     {
-      from: 52,
-      to: 75,
+      from: 66,
+      to: 94,
     },
     {
       from: 89,
