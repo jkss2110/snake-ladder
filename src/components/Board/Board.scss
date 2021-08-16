@@ -1,0 +1,22 @@
+.table {
+    display: flex;
+    margin: 1rem;
+    flex-direction: column-reverse;
+    width: auto !important;
+    &> :nth-child(odd){
+        display:flex; 
+      flex-direction: row;
+    }
+    &> :nth-child(even){
+        display:flex; 
+      flex-direction: row-reverse;
+    }
+  }
+  .boardGame{
+      display: flex;
+      flex-direction: row;
+  }
+  .dice{
+      padding-top: 16rem;
+    padding-left: 3rem;
+  }
