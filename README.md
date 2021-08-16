@@ -2,6 +2,6 @@
 Created in ReactJS purely 
 
 <p align="center">
-<img src="./src/img/Snakeandladder.png" alt="alt text" width="500px" height="600px">
+<img src="./src/img/Snakeandladder.png" alt="alt text" width="650px" height="500px">
 </p>
 
