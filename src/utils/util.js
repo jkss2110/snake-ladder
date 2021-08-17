@@ -25,10 +25,6 @@ export function getLadder() {
       from: 66,
       to: 94,
     },
-    {
-      from: 89,
-      to: 93,
-    },
   ];
   return ladders;
 }

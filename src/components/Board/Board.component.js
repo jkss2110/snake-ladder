@@ -8,7 +8,10 @@ import snake3 from "../../img/snake3.png";
 import snake2 from "../../img/snake2.png";
 import snake4 from "../../img/snake4.png";
 import ladder1 from "../../img/ladder.png";
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+toast.configure();
 export default class Board extends React.Component {
   constructor(props) {
     super(props);
@@ -23,6 +26,7 @@ export default class Board extends React.Component {
       snake4 : {"imgClass": "snake4","divClass":"imageContainerSnake4"},
       ladder1: {"imgClass": "ladder1","divClass":"imageContainerLadder1"},
       ladder2: {"imgClass": "ladder2","divClass":"imageContainerLadder2"},
+      gameover: false,
     };
   }
   checkSnake = (i) => {
@@ -76,6 +80,9 @@ export default class Board extends React.Component {
     return boardHtml;
   };
   onRollDiceClick = () => {
+    if (this.state.gameover){
+      return;
+    }
     const min = 1;
     const max = 7;
     const rand = Math.floor(min + Math.random() * (max - min));
@@ -84,11 +91,31 @@ export default class Board extends React.Component {
     if (!player[turn].start){
       if (rand === 1){
         player[turn].start = true;
+      }
+      this.setState({
+        diceNumber: rand,
+        players: player,
+        turn: turn === 0 ? 1 : 0,
+      });
+      return;
+    }else if (player[turn].status >94){
+      const sum = player[turn].status + rand;
+      if (sum > 100){
         this.setState({
           diceNumber: rand,
           players: player,
           turn: turn === 0 ? 1 : 0,
         });
+        return;
+      } else if (sum === 100){
+        player[turn].status = sum;
+        this.setState({
+          diceNumber: rand,
+          players: player,
+          turn: turn === 0 ? 1 : 0,
+          gameover: true,
+        });
+        toast.success('Game Over '+player[turn].name+" Won",{position: toast.POSITION.BOTTOM_CENTER});
         return;
       }
     }
@@ -120,7 +147,7 @@ export default class Board extends React.Component {
     return (
       <>
         <div className="boardGame">
-        <div className="dice">Turn for {this.state.players[this.state.turn].name}</div>
+        <div className="dice">{this.state.players[this.state.turn].start?"Turn for":"Wait for"} {this.state.players[this.state.turn].name}</div>
           <div className="table">{boardHtml}</div>
           <div className="dice">
             <Button variant="primary" onClick={this.onRollDiceClick}>
