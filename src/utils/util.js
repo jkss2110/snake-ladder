@@ -41,6 +41,7 @@ export function getPlayer() {
       style: {
         "backgroundColor": "yellow",
       },
+      start : false,
     },
     {
       name: "player2",
@@ -49,6 +50,7 @@ export function getPlayer() {
       style: {
         "backgroundColor": "green",
       },
+      start: false,
     },
   ];
   return players;

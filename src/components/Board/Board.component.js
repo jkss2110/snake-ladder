@@ -81,6 +81,17 @@ export default class Board extends React.Component {
     const rand = Math.floor(min + Math.random() * (max - min));
     let player = this.state.players.slice();
     const turn = this.state.turn;
+    if (!player[turn].start){
+      if (rand === 1){
+        player[turn].start = true;
+        this.setState({
+          diceNumber: rand,
+          players: player,
+          turn: turn === 0 ? 1 : 0,
+        });
+        return;
+      }
+    }
     player[turn].status += rand;
     let status = player[turn].status;
     // Snake bite
@@ -109,7 +120,7 @@ export default class Board extends React.Component {
     return (
       <>
         <div className="boardGame">
-        <span className="dice">Turn for {this.state.players[this.state.turn].name}</span>
+        <div className="dice">Turn for {this.state.players[this.state.turn].name}</div>
           <div className="table">{boardHtml}</div>
           <div className="dice">
             <Button variant="primary" onClick={this.onRollDiceClick}>
