@@ -17,6 +17,8 @@
       flex-direction: row;
   }
   .dice{
-      padding-top: 16rem;
+    padding-top: 16rem;
     padding-left: 3rem;
+    display: flex;
+    flex-direction: column;
   }

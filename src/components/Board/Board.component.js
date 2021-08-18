@@ -3,8 +3,8 @@ import Cell from "../Cell/Cell.component";
 import "./Board.scss";
 import { Button } from "reactstrap";
 import { getPlayer, getSnakes, getLadder } from "../../utils/util";
-import {toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 toast.configure();
 export default class Board extends React.Component {
@@ -17,6 +17,7 @@ export default class Board extends React.Component {
       ladders: getLadder(),
       turn: 0,
       gameover: false,
+      start: false,
     };
   }
   checkSnake = (i) => {
@@ -52,7 +53,11 @@ export default class Board extends React.Component {
       });
       let snakeFound = this.checkSnake(i);
       let ladderFound = this.checkLadder(i);
-      if (found === undefined && snakeFound === undefined && ladderFound === undefined) {
+      if (
+        found === undefined &&
+        snakeFound === undefined &&
+        ladderFound === undefined
+      ) {
         found = {
           backgroundColor: "grey",
         };
@@ -60,21 +65,29 @@ export default class Board extends React.Component {
         found = {
           backgroundColor: "red",
         };
-       
-      } else if (ladderFound !== undefined){
+      } else if (ladderFound !== undefined) {
         found = {
-            backgroundColor: "orange",
-          };
-         
+          backgroundColor: "orange",
+        };
       } else {
         found = found.style;
       }
-      boardHtml.push(<Cell sStyle={found} snake={snakeFound} ladder={ladderFound} number={i}></Cell>);
+      boardHtml.push(
+        <Cell
+          sStyle={found}
+          snake={snakeFound}
+          ladder={ladderFound}
+          number={i}
+        ></Cell>
+      );
     }
     return boardHtml;
   };
   onRollDiceClick = () => {
-    if (this.state.gameover){
+    this.setState({
+      start : true,
+    });
+    if (this.state.gameover) {
       return;
     }
     const min = 1;
@@ -82,8 +95,8 @@ export default class Board extends React.Component {
     const rand = Math.floor(min + Math.random() * (max - min));
     let player = this.state.players.slice();
     const turn = this.state.turn;
-    if (!player[turn].start){
-      if (rand === 1){
+    if (!player[turn].start) {
+      if (rand === 1) {
         player[turn].start = true;
       }
       this.setState({
@@ -92,16 +105,16 @@ export default class Board extends React.Component {
         turn: turn === 0 ? 1 : 0,
       });
       return;
-    }else if (player[turn].status >94){
+    } else if (player[turn].status > 94) {
       const sum = player[turn].status + rand;
-      if (sum > 100){
+      if (sum > 100) {
         this.setState({
           diceNumber: rand,
           players: player,
           turn: turn === 0 ? 1 : 0,
         });
         return;
-      } else if (sum === 100){
+      } else if (sum === 100) {
         player[turn].status = sum;
         this.setState({
           diceNumber: rand,
@@ -109,7 +122,9 @@ export default class Board extends React.Component {
           turn: turn === 0 ? 1 : 0,
           gameover: true,
         });
-        toast.success('Game Over '+player[turn].name+" Won",{position: toast.POSITION.BOTTOM_CENTER});
+        toast.success("Game Over " + player[turn].name + " Won", {
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
         return;
       }
     }
@@ -117,14 +132,14 @@ export default class Board extends React.Component {
     let status = player[turn].status;
     // Snake bite
     const snakeFound = this.checkSnake(status);
-    if (snakeFound !== undefined){
-        player[turn].status = snakeFound.tail;
+    if (snakeFound !== undefined) {
+      player[turn].status = snakeFound.tail;
     }
     // Ladder Check
     const ladderFound = this.checkLadder(status);
-    if (ladderFound !== undefined){
-        player[turn].status = ladderFound.to;
-    } 
+    if (ladderFound !== undefined) {
+      player[turn].status = ladderFound.to;
+    }
     this.setState({
       diceNumber: rand,
       players: player,
@@ -136,20 +151,28 @@ export default class Board extends React.Component {
     const boardHtml = [];
     for (let i = 0; i < 10; i++) {
       const eachRow = this.createBoard(i * fixedCol + 1, fixedCol * (i + 1));
-      boardHtml.push(<div key={i * fixedCol + 1+"main"}>{eachRow}</div>);
+      boardHtml.push(<div key={i * fixedCol + 1 + "main"}>{eachRow}</div>);
     }
     return (
       <>
         <div className="boardGame">
-        <div className="dice">{this.state.players[this.state.turn].start?"Turn for":"Wait for"} {this.state.players[this.state.turn].name}</div>
+          <div className="dice">
+            {this.state.players[this.state.turn].start
+              ? "Turn for"
+              : "Wait for"}{" "}
+            {this.state.players[this.state.turn].name}
+          </div>
           <div>
-          <div className="table">{boardHtml}</div>
-        </div>
-        <div className="dice">
+            <div className="table">{boardHtml}</div>
+          </div>
+          <div className="dice">
             <Button variant="primary" onClick={this.onRollDiceClick}>
               Roll the dice
             </Button>
-            <span style={{padding: "1rem"}}>{this.state.diceNumber}</span>
+            <span style={{ padding: "1rem" }}>
+              {this.state.start?this.state.players[this.state.turn === 0 ? 1 : 0].name +" moved "+
+              this.state.diceNumber:"Start throw Dice" }
+            </span>
           </div>
         </div>
       </>
