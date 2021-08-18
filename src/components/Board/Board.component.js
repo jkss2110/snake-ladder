@@ -25,6 +25,7 @@ export default class Board extends React.Component {
       if (k.head === i) {
         return k;
       }
+      return undefined;
     });
     return found;
   };
@@ -35,6 +36,7 @@ export default class Board extends React.Component {
       if (k.from === i) {
         return k;
       }
+      return undefined;
     });
     return found;
   };
@@ -46,6 +48,7 @@ export default class Board extends React.Component {
         if (k.status === i) {
           return k;
         }
+        return undefined;
       });
       let snakeFound = this.checkSnake(i);
       let ladderFound = this.checkLadder(i);
