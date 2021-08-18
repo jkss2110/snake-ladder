@@ -148,18 +148,20 @@ export default class Board extends React.Component {
       <>
         <div className="boardGame">
         <div className="dice">{this.state.players[this.state.turn].start?"Turn for":"Wait for"} {this.state.players[this.state.turn].name}</div>
+          <div>
           <div className="table">{boardHtml}</div>
-          <div className="dice">
-            <Button variant="primary" onClick={this.onRollDiceClick}>
-              Roll the dice
-            </Button>
-            <span style={{padding: "1rem"}}>{this.state.diceNumber}</span>
-          </div>
           <ImageContainer classes={this.state.snake3.imgClass} imgContain={this.state.snake3.divClass} sSrc={snake3} ></ImageContainer>
           <ImageContainer classes={this.state.snake2.imgClass} imgContain={this.state.snake2.divClass} sSrc={snake2} ></ImageContainer>
           <ImageContainer classes={this.state.snake4.imgClass} imgContain={this.state.snake4.divClass} sSrc={snake4} ></ImageContainer>
           <ImageContainer classes={this.state.ladder1.imgClass} imgContain={this.state.ladder1.divClass} sSrc={ladder1} ></ImageContainer>
           <ImageContainer classes={this.state.ladder2.imgClass} imgContain={this.state.ladder2.divClass} sSrc={ladder1} ></ImageContainer>
+        </div>
+        <div className="dice">
+            <Button variant="primary" onClick={this.onRollDiceClick}>
+              Roll the dice
+            </Button>
+            <span style={{padding: "1rem"}}>{this.state.diceNumber}</span>
+          </div>
         </div>
       </>
     );
