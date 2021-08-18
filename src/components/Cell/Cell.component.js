@@ -36,7 +36,7 @@ export default function Cell(props) {
         default: sSrc = undefined;
     }
     if (imageVisible){
-        imageContainer.push( <ImageContainer classes={classes.imgClass} imgContain={classes.divClass} sSrc={sSrc} ></ImageContainer>);
+        imageContainer.push( <ImageContainer key={props.number} classes={classes.imgClass} imgContain={classes.divClass} sSrc={sSrc} ></ImageContainer>);
     }
     return (
         <div style={props.sStyle} key={props.number}  className="cell">
