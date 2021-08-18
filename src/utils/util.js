@@ -18,6 +18,12 @@ export function getSnakes() {
       imgClass: "snake3",
       divClass:"imageContainerSnake3",
     },
+    {
+      head: 96,
+      tail: 52,
+      imgClass: "snake5",
+      divClass:"imageContainerSnake5",
+    },
   ];
   return snakes;
 }
@@ -41,7 +47,7 @@ export function getLadder() {
 export function getPlayer() {
   const players = [
     {
-      name: "player1",
+      name: "Yellows",
       id: 1,
       status: 1,
       style: {
@@ -50,7 +56,7 @@ export function getPlayer() {
       start : false,
     },
     {
-      name: "player2",
+      name: "Greens",
       id: 2,
       status: 1,
       style: {

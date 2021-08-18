@@ -157,10 +157,17 @@ export default class Board extends React.Component {
       <>
         <div className="boardGame">
           <div className="dice">
+          <span style={{ padding: "1rem" }}>
             {this.state.players[this.state.turn].start
               ? "Turn for"
               : "Wait for"}{" "}
             {this.state.players[this.state.turn].name}
+            </span>
+            <span style={{ padding: "1rem" }}>
+            {!this.state.players[this.state.turn].start
+              ? " Get '1' to start"
+              : ""}
+            </span>
           </div>
           <div>
             <div className="table">{boardHtml}</div>

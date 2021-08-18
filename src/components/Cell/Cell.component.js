@@ -3,6 +3,7 @@ import ImageContainer from "../Image/ImageContainer.component";
 import snake3 from "../../img/snake3.png";
 import snake2 from "../../img/snake2.png";
 import snake4 from "../../img/snake4.png";
+import snake5 from "../../img/snake5.png";
 import ladder1 from "../../img/ladder.png";
 import './Cell.scss';
 export default function Cell(props) {
@@ -32,6 +33,8 @@ export default function Cell(props) {
         case "ladder1": sSrc = ladder1;
                        break;
         case "ladder2": sSrc = ladder1;
+                       break;
+        case "snake5": sSrc = snake5;
                        break;
         default: sSrc = undefined;
     }
