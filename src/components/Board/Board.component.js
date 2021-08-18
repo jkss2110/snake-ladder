@@ -3,11 +3,6 @@ import Cell from "../Cell/Cell.component";
 import "./Board.scss";
 import { Button } from "reactstrap";
 import { getPlayer, getSnakes, getLadder } from "../../utils/util";
-import ImageContainer from "../Image/ImageContainer.component";
-import snake3 from "../../img/snake3.png";
-import snake2 from "../../img/snake2.png";
-import snake4 from "../../img/snake4.png";
-import ladder1 from "../../img/ladder.png";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -21,11 +16,6 @@ export default class Board extends React.Component {
       snakes: getSnakes(),
       ladders: getLadder(),
       turn: 0,
-      snake3 : {"imgClass": "snake3","divClass":"imageContainerSnake3"},
-      snake2 : {"imgClass": "snake2","divClass":"imageContainerSnake2"},
-      snake4 : {"imgClass": "snake4","divClass":"imageContainerSnake4"},
-      ladder1: {"imgClass": "ladder1","divClass":"imageContainerLadder1"},
-      ladder2: {"imgClass": "ladder2","divClass":"imageContainerLadder2"},
       gameover: false,
     };
   }
@@ -63,19 +53,20 @@ export default class Board extends React.Component {
         found = {
           backgroundColor: "grey",
         };
-       
       } else if (snakeFound !== undefined) {
         found = {
           backgroundColor: "red",
         };
+       
       } else if (ladderFound !== undefined){
         found = {
             backgroundColor: "orange",
           };
+         
       } else {
         found = found.style;
       }
-      boardHtml.push(<Cell sStyle={found} number={i}></Cell>);
+      boardHtml.push(<Cell sStyle={found} snake={snakeFound} ladder={ladderFound} number={i}></Cell>);
     }
     return boardHtml;
   };
@@ -142,7 +133,7 @@ export default class Board extends React.Component {
     const boardHtml = [];
     for (let i = 0; i < 10; i++) {
       const eachRow = this.createBoard(i * fixedCol + 1, fixedCol * (i + 1));
-      boardHtml.push(<div>{eachRow}</div>);
+      boardHtml.push(<div key={i * fixedCol + 1+"main"}>{eachRow}</div>);
     }
     return (
       <>
@@ -150,11 +141,6 @@ export default class Board extends React.Component {
         <div className="dice">{this.state.players[this.state.turn].start?"Turn for":"Wait for"} {this.state.players[this.state.turn].name}</div>
           <div>
           <div className="table">{boardHtml}</div>
-          <ImageContainer classes={this.state.snake3.imgClass} imgContain={this.state.snake3.divClass} sSrc={snake3} ></ImageContainer>
-          <ImageContainer classes={this.state.snake2.imgClass} imgContain={this.state.snake2.divClass} sSrc={snake2} ></ImageContainer>
-          <ImageContainer classes={this.state.snake4.imgClass} imgContain={this.state.snake4.divClass} sSrc={snake4} ></ImageContainer>
-          <ImageContainer classes={this.state.ladder1.imgClass} imgContain={this.state.ladder1.divClass} sSrc={ladder1} ></ImageContainer>
-          <ImageContainer classes={this.state.ladder2.imgClass} imgContain={this.state.ladder2.divClass} sSrc={ladder1} ></ImageContainer>
         </div>
         <div className="dice">
             <Button variant="primary" onClick={this.onRollDiceClick}>

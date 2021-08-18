@@ -3,14 +3,20 @@ export function getSnakes() {
     {
       head: 42,
       tail: 18,
+      imgClass: "snake4",
+      divClass:"imageContainerSnake4",
     },
     {
       head: 77,
       tail: 57,
+      imgClass: "snake2",
+      divClass:"imageContainerSnake2",
     },
     {
       head: 50,
       tail: 33,
+      imgClass: "snake3",
+      divClass:"imageContainerSnake3",
     },
   ];
   return snakes;
@@ -20,10 +26,14 @@ export function getLadder() {
     {
       from: 6,
       to: 34,
+      imgClass: "ladder1",
+      divClass:"imageContainerLadder1",
     },
     {
       from: 66,
       to: 94,
+      imgClass: "ladder2",
+      divClass:"imageContainerLadder2",
     },
   ];
   return ladders;

@@ -1,25 +1,31 @@
 .imageContainerSnake3{
-    position: absolute;
-    top: 18rem;
-    left: 45rem;
+    width: 15rem;
+    height: 8rem;
+    position: relative;
+    top: -5rem;
+    left: -12rem;
     .snake3{
         width: 15rem;
         height: 8rem;
     }
 }
 .imageContainerSnake2{
-    position: absolute;
-    top: 10rem;
-    left: 27rem;
+    width: 15rem;
+    height: 8rem;
+    position: relative;
+    top: -3rem;
+    left: -7rem;
     .snake2{
         width: 15rem;
         height: 8rem;
     }
 }
 .imageContainerSnake4{
-    position: absolute;
-    top: 21rem;
-    left: 25rem;
+    width: 5rem;
+    height: 11rem;
+    top: -2rem;
+    left: -1rem;
+    position: relative;
     .snake4{
         width: 5rem;
         height: 11rem;
@@ -27,18 +33,22 @@
 }
 
 .imageContainerLadder1{
-    position: absolute;
-    top: 25rem;
-    left: 42rem;
+    width: 4rem;
+    height: 11rem;
+    position: relative;
+    top: -14rem;
+    left: -1rem;
     .ladder1{
         width: 4rem;
         height: 11rem;
     }
 }
 .imageContainerLadder2{
-    position: absolute;
-    top: 3rem;
-    left: 42rem;
+    width: 4rem;
+    height: 11rem;
+    position: relative;
+    top: -14rem;
+    left: -1rem;
     .ladder2{
         width: 4rem;
         height: 11rem;
