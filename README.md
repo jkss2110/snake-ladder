@@ -9,4 +9,4 @@ Created in ReactJS,HTML,CSS.
 - Can Expand easily with more snakes and ladders just by changing the util
 - Currently 1vs1 but can expand for more.
 ## TODO
-- UI should be more explanatory 
+- UI should be more explanatory...
