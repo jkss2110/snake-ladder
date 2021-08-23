@@ -20,6 +20,7 @@ export default class Board extends React.Component {
       start: false,
     };
   }
+  //Check snake
   checkSnake = (i) => {
     const snake = this.state.snakes.slice();
     let found = snake.find((k, j) => {
@@ -41,42 +42,34 @@ export default class Board extends React.Component {
     });
     return found;
   };
-  createBoard = (init, cellnos) => {
-    const boardHtml = [];
-
-    for (let i = init; i <= cellnos; i++) {
-      let found = this.state.players.find((k, j) => {
+    // Player check
+    checkPlayer = (i) => {
+      const player = this.state.players.slice();
+      let found = player.find((k, j) => {
         if (k.status === i) {
           return k;
         }
         return undefined;
       });
+      return found;
+    };
+  createBoard = (init, cellnos) => {
+    const boardHtml = [];
+
+    for (let i = init; i <= cellnos; i++) {
+      let playerFound = this.checkPlayer(i);
       let snakeFound = this.checkSnake(i);
       let ladderFound = this.checkLadder(i);
-      if (
-        found === undefined &&
-        snakeFound === undefined &&
-        ladderFound === undefined
-      ) {
-        found = {
+      const found = {
           backgroundColor: "grey",
-        };
-      } else if (snakeFound !== undefined) {
-        found = {
-          backgroundColor: "red",
-        };
-      } else if (ladderFound !== undefined) {
-        found = {
-          backgroundColor: "orange",
-        };
-      } else {
-        found = found.style;
-      }
+      };
+      // Todo - Put images
       boardHtml.push(
         <Cell
           sStyle={found}
           snake={snakeFound}
           ladder={ladderFound}
+          player={playerFound}
           number={i}
         ></Cell>
       );
