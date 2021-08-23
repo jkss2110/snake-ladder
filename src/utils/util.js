@@ -47,18 +47,22 @@ export function getLadder() {
 export function getPlayer() {
   const players = [
     {
-      name: "Yellows",
+      name: "Player1",
       id: 1,
       status: 1,
+      imgClass: "P1",
+      divClass:"imageContainerP1",
       style: {
         "backgroundColor": "yellow",
       },
       start : false,
     },
     {
-      name: "Greens",
+      name: "Player2",
       id: 2,
       status: 1,
+      imgClass: "P2",
+      divClass:"imageContainerP2",
       style: {
         "backgroundColor": "green",
       },

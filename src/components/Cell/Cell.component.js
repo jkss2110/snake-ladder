@@ -5,6 +5,8 @@ import snake2 from "../../img/snake2.png";
 import snake4 from "../../img/snake4.png";
 import snake5 from "../../img/snake5.png";
 import ladder1 from "../../img/ladder.png";
+import P1 from '../../img/P1.png';
+import P2 from '../../img/P2.png';
 import './Cell.scss';
 export default function Cell(props) {
     let classes = {};
@@ -19,7 +21,11 @@ export default function Cell(props) {
         classes.imgClass = props.ladder.imgClass;
         classes.divClass = props.ladder.divClass;
         imageVisible =true;
-    }else{
+    }else if(props.player !== undefined){
+        classes.imgClass = props.player.imgClass;
+        classes.divClass = props.player.divClass;
+        imageVisible = true;
+    }else {
         classes.imgClass = "";
         classes.divClass = "";
     }
@@ -36,6 +42,10 @@ export default function Cell(props) {
                        break;
         case "snake5": sSrc = snake5;
                        break;
+        case "P1": sSrc = P1;
+                   break;
+        case "P2": sSrc = P2;
+                    break;     
         default: sSrc = undefined;
     }
     if (imageVisible){
