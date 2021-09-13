@@ -2,7 +2,8 @@
 Created in ReactJS,HTML,CSS.
 
 <p align="center">
-<img src="./src/img/Snakeandladder.png" alt="alt text" width="850px" height="450px">
+
+  [![SC2 Video](./src/img/Snakeandladder.png)](https://www.youtube.com/watch?v=MBCCMV0RMWw)
 </p>
 
 ## Flexibility
